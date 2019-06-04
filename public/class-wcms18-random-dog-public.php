@@ -96,7 +96,7 @@ class Wcms18_Random_Dog_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wcms18-random-dog-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wcms18-random-dog-public.js', array( 'jquery' ), $this->version, true );
 
 	}
 

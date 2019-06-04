@@ -79,6 +79,9 @@ class Wcms18_Random_Dog {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+		// register widget
+		$this->register_widget();
+
 	}
 
 	/**
@@ -110,6 +113,11 @@ class Wcms18_Random_Dog {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wcms18-random-dog-i18n.php';
+
+		/**
+		 * The class responsible for the widget of the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wcms18-random-dog-widget.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -173,6 +181,17 @@ class Wcms18_Random_Dog {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * Register the widget.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_widget() {
+		add_action('widgets_init', function(){
+			register_widget('Wcms18_Random_Dog_Widget');
+		});
 	}
 
 	/**

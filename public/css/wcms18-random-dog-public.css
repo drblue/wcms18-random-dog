@@ -2,3 +2,6 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+.widget_wcms18-random-dog .content .loading {
+	font-style: italic;
+}
