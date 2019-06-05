@@ -241,7 +241,7 @@ class Wcms18_Random_Dog {
 					PATHINFO_EXTENSION
 				)
 			),
-			['mp4', 'ogv', 'avi']
+			['mp4', 'ogv', 'avi', 'webm']
 		);
 
 		wp_send_json_success([
