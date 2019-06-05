@@ -230,17 +230,19 @@ class Wcms18_Random_Dog {
 		$body = wp_remote_retrieve_body($response);
 		$content = json_decode($body);
 
-		// 1. Find out path from URL
-		$url_path = parse_url($content->url, PHP_URL_PATH);
-
-		// 2. Find the file extension from the path
-		$file_extension = pathinfo($url_path, PATHINFO_EXTENSION);  // JPG
-
-		// 3. If extension is 'mp4' or 'ogv' or 'avi', set type to 'video'
-		$video_extensions = ['mp4', 'ogv', 'avi'];
-
-		$file_extension_lowercase = strtolower($file_extension); // jpg
-		$is_video = in_array($file_extension_lowercase, $video_extensions);
+		// 1. Do stuff.
+		$is_video = in_array(
+			strtolower(
+				pathinfo(
+					parse_url(
+						$content->url,
+						PHP_URL_PATH
+					),
+					PATHINFO_EXTENSION
+				)
+			),
+			['mp4', 'ogv', 'avi']
+		);
 
 		wp_send_json_success([
 			'type' => $is_video ? "video" : "image",
