@@ -240,13 +240,10 @@ class Wcms18_Random_Dog {
 		$video_extensions = ['mp4', 'ogv', 'avi'];
 
 		$file_extension_lowercase = strtolower($file_extension); // jpg
-		$is_video = in_array($file_extension_lowercase, $video_extensions);
 
-		if ($is_video) {
-			$type = "video";
-		} else {
-			$type = "image";
-		}
+		$type = in_array($file_extension_lowercase, $video_extensions)
+			? "video"
+			: "image";
 
 		wp_send_json_success([
 			'type' => $type,
