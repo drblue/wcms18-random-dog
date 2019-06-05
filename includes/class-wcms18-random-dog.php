@@ -220,8 +220,20 @@ class Wcms18_Random_Dog {
 	 * @since    1.0.0
 	 */
 	public function ajax_wcms18_random_dog__get() {
-		echo "🐕";
-		wp_die();
+		$response = wp_remote_get('https://random.dog/woof.json');
+		if (is_wp_error($response) || wp_remote_retrieve_response_code($response) != 200) {
+			wp_send_json_error([
+				'error_code' => wp_remote_retrieve_response_code($response),
+				'error_msg' => wp_remote_retrieve_response_message($response),
+			]);
+		}
+		$body = wp_remote_retrieve_body($response);
+		$content = json_decode($body);
+
+		wp_send_json_success([
+			'type' => 'image',
+			'src' => $content->url,
+		]);
 	}
 
 	/**
