@@ -241,12 +241,8 @@ class Wcms18_Random_Dog {
 
 		$file_extension_lowercase = strtolower($file_extension); // jpg
 
-		$type = in_array($file_extension_lowercase, $video_extensions)
-			? "video"
-			: "image";
-
 		wp_send_json_success([
-			'type' => $type,
+			'type' => in_array($file_extension_lowercase, $video_extensions) ? "video" : "image",
 			'src' => $content->url,
 		]);
 	}
