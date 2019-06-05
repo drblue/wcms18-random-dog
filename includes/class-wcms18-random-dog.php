@@ -82,6 +82,9 @@ class Wcms18_Random_Dog {
 		// register widget
 		$this->register_widget();
 
+		// register ajax actions
+		$this->register_ajax_actions();
+
 	}
 
 	/**
@@ -192,6 +195,33 @@ class Wcms18_Random_Dog {
 		add_action('widgets_init', function(){
 			register_widget('Wcms18_Random_Dog_Widget');
 		});
+	}
+
+	/**
+	 * Register the ajax actions.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_ajax_actions() {
+		// register action 'wcms18_random_dog__get'
+		add_action('wp_ajax_wcms18_random_dog__get', [
+			$this,
+			'ajax_wcms18_random_dog__get'
+		]);
+		add_action('wp_ajax_nopriv_wcms18_random_dog__get', [
+			$this,
+			'ajax_wcms18_random_dog__get'
+		]);
+	}
+
+	/**
+	 * Respond to ajax action 'wcms18_random_dog__get'.
+	 *
+	 * @since    1.0.0
+	 */
+	public function ajax_wcms18_random_dog__get() {
+		echo "🐕";
+		wp_die();
 	}
 
 	/**
